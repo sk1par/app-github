@@ -1,0 +1,41 @@
+<div class="content" role="main">
+
+  <form class="mt-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text" formControlName="username" class="form-control" id="exampleInputEmail1"
+        aria-describedby="emailHelp" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Repository</label>
+      <input type="text" formControlName="repository" class="form-control" id="exampleInputPassword1"
+        placeholder="Repository">
+    </div>
+    
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+    </div>
+  </form>
+
+  <!-- Resources -->
+
+  <div class="row" *ngIf="issues">
+    <div class="column" *ngFor="let item of issues">
+      <div class="card">
+        <p>{{ item.assignee?.login ? item.assignee?.login : 'No assignee' }}</p>
+        <a href="{{ item.html_url }}" target="_blank">
+          <h6>{{ item.title }}</h6>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="noResult" class="d-flex justify-content-center mt-5">
+    <div class="alert alert-danger" role="alert">
+      This is a danger alert—check it out!
+    </div>
+  </div>
+   
+  
+</div>
